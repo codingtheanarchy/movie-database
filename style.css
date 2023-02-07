@@ -108,3 +108,8 @@ button.hidden {
   font-family: 'Nerd Fonts';
   font-size: 3em;
 }
+
+#movie-title-box input {
+  height: 62px;
+  width: 362px;
+}
