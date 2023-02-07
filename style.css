@@ -71,13 +71,14 @@ button.hidden {
 #add-movie-popup {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   width: 600px;
   transform: translate(-50%, -50%);
-  background: #00a8ff;
+  background: #005a89;
 }
 
 #add-movie-popup h3 {
@@ -113,3 +114,62 @@ button.hidden {
   height: 62px;
   width: 362px;
 }
+
+#movie-poster-upload div#drag-n-drop-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 362px;
+  height: 200px;
+  border: 2px whitesmoke dashed
+}
+
+div#drag-n-drop-box img {
+  width: 64px;
+}
+
+#movie-poster-upload div#uploaded-movie-file {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  border: 1px solid whitesmoke;
+  padding: 5px
+}
+
+#file-status-icons i.green-check::before {
+  content: "\f058";
+  position: absolute;
+  font-family: "Nerd Fonts";
+  font-style: normal;
+  color: green;
+  font-size: 2em 
+}
+
+#file-status-icons i.red-cross::before {
+  content: "\f057";
+  font-family: "Nerd Fonts";
+  font-style: normal;
+  color: red;
+  font-size: 2em
+}
+
+#file-name-box span {
+  display: block
+}
+
+#file-name-box span.file-name {
+  font-weight: bold;
+}
+
+#file-name-box span.status-text {
+  font-style: italic; 
+}
+
+#remove-file i.trash::before {
+ content: "\f1f8";
+ font-family: "Nerd Fonts";
+ font-style: normal;
+ font-size: 2em;
+}
+
