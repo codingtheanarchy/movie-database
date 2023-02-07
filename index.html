@@ -2,78 +2,76 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <title>Document</title>
 </head>
 
 <body>
-    <h1>🍿MOVIE GENRES</h1>
-    <main>
-        <div id="movie-genre-box">
-            <select name="Select Genre" id="select-genre">
-                <option value="">--Select a Genre--</option>
-                <option class="genre" value="comedy">Comedy</option>
-                <option class="genre" value="drama">Drama</option>
-                <option class="genre" value="thriller">Thriller</option>
-            </select>
+  <h1>🍿MOVIE GENRES</h1>
+  <main>
+    <div id="movie-genre-box">
+      <select name="Select Genre" id="select-genre">
+        <option value="">--Select a Genre--</option>
+        <option class="genre" value="comedy">Comedy</option>
+        <option class="genre" value="drama">Drama</option>
+        <option class="genre" value="thriller">Thriller</option>
+      </select>
+    </div>
+
+    <div id="movie-popup">
+      <img src="" alt="" class="movie-poster" />
+    </div>
+
+    <div class="movie-showcase-btns">
+      <button class="hidden">1</button>
+      <button class="hidden">2</button>
+      <button class="hidden">3</button>
+    </div>
+
+    <div id="add-movie-popup">
+      <div id="add-movie-genre">
+        <h3>Genre Name</h3>
+        <div id="genre-box">
+          <select></select>
+          <input type="text" />
+          <button></button>
         </div>
+      </div>
 
-        <div id="movie-popup">
-            <img src="" alt="" class="movie-poster">
+      <div id="movie-title-box">
+        <h3 for="movie-title">Movie Title</h3>
+        <input id="movie-title" type="text" />
+      </div>
+
+      <div id="movie-poster-upload">
+        <div id="drag-n-drop-box">
+          <img src="" alt="upload icon" />
+          <h3>Upload Movie Poster</h3>
         </div>
-
-        <div class="movie-showcase-btns">
-            <button class="hidden">1</button>
-            <button class="hidden">2</button>
-            <button class="hidden">3</button>
+        <div id="uploaded-movie-file">
+          <div id="file-status-icons">
+            <i class="green-check"></i>
+            <i class="red-cross"></i>
+          </div>
+          <div id="file-name-box">
+            <span class="file-name"></span>
+            <span class="status-text"></span>
+          </div>
+          <div id="remove-file">
+            <i></i>
+          </div>
         </div>
-
-        <div id="add-movie-popup">
-            <div id="add-movie-genre">
-                <h3>Genre Name</h3>
-                <div id="genre-box">
-                    <select></select>
-                    <input type="text">
-                    <button></button>
-                </div>
-            </div>
-
-            <div id="movie-title-box">
-                <h3 for="movie-title">Movie Title</h3>
-                <input id="movie-title" type="text">
-            </div>
-
-            <div id="movie-poster-upload">
-                <div id="drag-n-drop-box">
-                    <img src="" alt="upload icon">
-                    <h3>Upload Movie Poster</h3>
-                </div>
-                <div id="uploaded-movie-file">
-                    <div id="file-status-icons">
-                        <i class="green-check"></i>
-                        <i class="red-cross"></i>
-                    </div>
-                    <div id="file-name-box">
-                        <span class="file-name"></span>
-                        <span class="status-text"></span>
-                    </div>
-                    <div id="remove-file">
-                        <i></i>
-                    </div>
-                </div>
-
-                <div id="submission-box">
-                    <button id="add-movie-btn"></button>
-                    <button id="finish-movie-btn"></button>
-                </div>
-            </div>
-        </div>
-    </main>
-
+      </div>
+      <div id="submission-box">
+        <button id="add-movie-btn"></button>
+        <button id="finish-movie-btn"></button>
+      </div>
+    </div>
+  </main>
 </body>
 
 </html>
