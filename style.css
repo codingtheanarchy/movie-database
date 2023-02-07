@@ -1,57 +1,59 @@
-*
-{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+@font-face {
+  font-family: 'Nerd Fonts';
+  src: url('./fonts/nf-windows.ttf');
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: rgb(37, 36, 36);
-    padding: 10px;
+  background: rgb(37, 36, 36);
+  padding: 10px;
 }
 
 h1 {
-    height: 100px;
-    font-size: 40px;
-    border-color: black;
-    text-align: center;
-    padding: 30px;
-    letter-spacing: 3px;
-    color:antiquewhite
-  
+  height: 100px;
+  font-size: 40px;
+  border-color: black;
+  text-align: center;
+  padding: 30px;
+  letter-spacing: 3px;
+  color: antiquewhite;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
- main div#movie-genre-box select {
-padding: 20px;
-font-size: 15px;
-font-weight: bold;
-cursor: pointer;
-} 
+main div#movie-genre-box select {
+  padding: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 main #movie-popup {
-    align-self: center;
+  align-self: center;
 }
 
-  main img.movie-poster {
-    height: 375px;
-  }
+main img.movie-poster {
+  height: 375px;
+}
 
 main div.movie-showcase-btns {
   align-self: center;
 }
 
 main div.movie-showcase-btns button {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-    
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .highlight {
@@ -59,26 +61,50 @@ main div.movie-showcase-btns button {
 }
 
 button.hidden {
-visibility: hidden;
+  visibility: hidden;
 }
 
 #add-movie-genre input {
   display: none;
 }
 
-#genre-box  {
-display: flex;
-    }
+#add-movie-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  transform: translate(-50%, -50%);
+  background: #00a8ff;
+}
+
+#add-movie-popup h3 {
+  font-size: 1.5em
+}
+
+#genre-box {
+  display: flex;
+}
+
 
 #genre-box select {
-width: 300px;
-height: 62px;
-font-size: 15px;
-font-weight: bold;
-cursor: pointer;
+  width: 300px;
+  height: 62px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #genre-box button {
   width: 62px;
   height: 62px;
+  cursor: pointer;
+}
+
+#genre-box button::before {
+  content: '\eadc';
+  font-family: 'Nerd Fonts';
+  font-size: 3em;
 }
