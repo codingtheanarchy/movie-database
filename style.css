@@ -80,8 +80,16 @@ button.hidden {
   width: 380px;
   transform: translate(-50%, -50%);
   background: #ff9f43;
-  padding: 10px;
-  border-radius: 15px
+  padding: 25px 10px 10px 10px;
+  border-radius: 15px;
+}
+
+#add-movie-popup::before {
+  content: "\f00d";
+  font-family: "Nerd Fonts";
+  position: absolute;
+  top: 15px;
+  right: 25px
 }
 
 #add-movie-popup h3 {
@@ -91,7 +99,7 @@ button.hidden {
 
 #genre-box {
   display: flex;
-  gap: 5px
+  gap: 5px;
 }
 
 #genre-box select {
@@ -100,7 +108,7 @@ button.hidden {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  background: #c8d6e5
+  background: #c8d6e5;
 }
 
 #genre-box button {
@@ -195,4 +203,12 @@ div#submission-box button.add-movie-btn {
   height: 62px;
   border-radius: 15px;
   font-size: 1.2em;
+}
+
+input[type='file'] {
+  filter: opacity(0);
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
 }
