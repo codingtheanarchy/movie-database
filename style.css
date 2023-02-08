@@ -10,7 +10,7 @@
 }
 
 body {
-  background: rgb(37, 36, 36);
+  background: #2e86de;
   padding: 10px;
 }
 
@@ -35,6 +35,7 @@ main div#movie-genre-box select {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  background: #c8d6e5;
 }
 
 main #movie-popup {
@@ -76,19 +77,22 @@ button.hidden {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;
+  width: 380px;
   transform: translate(-50%, -50%);
-  background: #005a89;
+  background: #ff9f43;
+  padding: 10px;
+  border-radius: 15px
 }
 
 #add-movie-popup h3 {
-  font-size: 1.5em
+  font-size: 1.5em;
+  color: #24415f;
 }
 
 #genre-box {
   display: flex;
+  gap: 5px
 }
-
 
 #genre-box select {
   width: 300px;
@@ -96,11 +100,14 @@ button.hidden {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  background: #c8d6e5
 }
 
 #genre-box button {
   width: 62px;
   height: 62px;
+  background: #10ac84;
+  border: 1px solid whitesmoke;
   cursor: pointer;
 }
 
@@ -108,11 +115,13 @@ button.hidden {
   content: '\eadc';
   font-family: 'Nerd Fonts';
   font-size: 3em;
+  color: #feca57;
 }
 
 #movie-title-box input {
   height: 62px;
   width: 362px;
+  background: #c8d6e5;
 }
 
 #movie-poster-upload div#drag-n-drop-box {
@@ -122,7 +131,7 @@ button.hidden {
   align-items: center;
   width: 362px;
   height: 200px;
-  border: 2px whitesmoke dashed
+  border: 2px whitesmoke dashed;
 }
 
 div#drag-n-drop-box img {
@@ -133,29 +142,32 @@ div#drag-n-drop-box img {
   display: flex;
   justify-content: space-evenly;
   margin-top: 10px;
+  padding: 5px;
   border: 1px solid whitesmoke;
-  padding: 5px
+  color: whitesmoke;
+  background: #5f27cd;
 }
 
 #file-status-icons i.green-check::before {
-  content: "\f058";
+  content: '\f058';
   position: absolute;
-  font-family: "Nerd Fonts";
+  font-family: 'Nerd Fonts';
   font-style: normal;
-  color: green;
-  font-size: 2em 
+  color: #01a3a4;
+  font-size: 2em;
 }
 
 #file-status-icons i.red-cross::before {
-  content: "\f057";
-  font-family: "Nerd Fonts";
+  content: '\f057';
+  font-family: 'Nerd Fonts';
   font-style: normal;
-  color: red;
-  font-size: 2em
+  color: #fc2526;
+  font-size: 2em;
+  visibility: hidden;
 }
 
 #file-name-box span {
-  display: block
+  display: block;
 }
 
 #file-name-box span.file-name {
@@ -163,13 +175,24 @@ div#drag-n-drop-box img {
 }
 
 #file-name-box span.status-text {
-  font-style: italic; 
+  font-style: italic;
+  color: #00d2d3;
 }
 
 #remove-file i.trash::before {
- content: "\f1f8";
- font-family: "Nerd Fonts";
- font-style: normal;
- font-size: 2em;
+  content: '\f1f8';
+  font-family: 'Nerd Fonts';
+  font-style: normal;
+  font-size: 2em;
+  color: #ee5253;
 }
 
+div#submission-box button.add-movie-btn {
+  background: #2e86de;
+  color: whitesmoke;
+  font-weight: bold;
+  width: 362px;
+  height: 62px;
+  border-radius: 15px;
+  font-size: 1.2em;
+}
