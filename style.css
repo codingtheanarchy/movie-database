@@ -70,7 +70,8 @@ button.hidden {
 }
 
 #add-movie-popup {
-  display: flex;
+  /* display: flex; */
+  display: none;
   flex-direction: column;
   gap: 10px;
   align-items: center;
@@ -85,11 +86,11 @@ button.hidden {
 }
 
 #add-movie-popup::before {
-  content: "\f00d";
-  font-family: "Nerd Fonts";
+  content: '\f00d';
+  font-family: 'Nerd Fonts';
   position: absolute;
   top: 15px;
-  right: 25px
+  right: 25px;
 }
 
 #add-movie-popup h3 {
@@ -203,6 +204,33 @@ div#submission-box button.add-movie-btn {
   height: 62px;
   border-radius: 15px;
   font-size: 1.2em;
+}
+
+footer {
+  text-align: center;
+  position: fixed;
+  bottom: 15px;
+  width: 100vw;
+  width: 100vw;
+}
+
+footer p {
+  margin-bottom: 15px;
+  color: whitesmoke;
+}
+
+footer p::before {
+  content: "\f16ff";
+  font-family: "Nerd Fonts";
+  font-size: 2em
+}
+footer button {
+  width: 125px;
+  height: 40px;
+  color: #e2df06; 
+  background: #5f27cd;
+  font-size: 20px;
+  border: 2px solid #ff9f43 
 }
 
 input[type='file'] {
