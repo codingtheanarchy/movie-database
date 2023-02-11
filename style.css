@@ -65,6 +65,19 @@ button.hidden {
   visibility: hidden;
 }
 
+#exit-form-btn {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+}
+
+#exit-form-btn::before {
+  content: "\f00d";
+  font-family: "Nerd Fonts"
+}
+
 #add-movie-genre input {
   display: none;
 }
@@ -85,7 +98,7 @@ button.hidden {
   border-radius: 15px;
 }
 
-#add-movie-popup::before {
+#exit-form::before {
   content: '\f00d';
   font-family: 'Nerd Fonts';
   position: absolute;
@@ -134,6 +147,7 @@ button.hidden {
 }
 
 #movie-poster-upload div#drag-n-drop-box {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -141,6 +155,13 @@ button.hidden {
   width: 362px;
   height: 200px;
   border: 2px whitesmoke dashed;
+}
+
+div#drag-n-drop-box input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 
 div#drag-n-drop-box img {
@@ -220,23 +241,16 @@ footer p {
 }
 
 footer p::before {
-  content: "\f16ff";
-  font-family: "Nerd Fonts";
-  font-size: 2em
+  content: '\f16ff';
+  font-family: 'Nerd Fonts';
+  font-size: 2em;
 }
 footer button {
   width: 125px;
   height: 40px;
-  color: #e2df06; 
+  color: #e2df06;
   background: #5f27cd;
   font-size: 20px;
-  border: 2px solid #ff9f43 
+  border: 2px solid #ff9f43;
 }
 
-input[type='file'] {
-  filter: opacity(0);
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
