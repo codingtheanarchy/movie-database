@@ -17,6 +17,9 @@ const addGenreForm = document.querySelector("#add-movie-popup")
 const addGenreBtn = document.querySelector("footer button")
 const exitGenreFormBtn = document.querySelector("#exit-form-btn")
 
+const fileInput = document.querySelector("input[type=file]")
+const previewUploadImg = document.querySelector("#drag-n-drop-box img")
+
 //adding click event listeners to each genre inside select.
 //if statement does not add event listener to a value property assign ""
 for (let i = 0; i < genres.children.length; i++) {
@@ -76,3 +79,24 @@ for (let i = 0; i < genres.children.length; i++) {
       addGenreForm.style.display = "none"
     })
       
+
+    fileInput.addEventListener("change", function() {
+        // Accessing a FileList for a File object 
+        const file = fileInput.files[0]
+        const reader = new FileReader()
+
+        reader.addEventListener("loadstart", function() {
+          console.log("The FileReader has started the read operation")
+        })
+
+        reader.addEventListener("progress", function(event) {
+          console.log("Here is the curren progress report of FileReader: ", event.loaded)
+        })
+
+        reader.addEventListener("load", function(){
+          console.log("The FileReader has completed")
+          previewUploadImg.src = reader.result
+        })
+
+        reader.readAsDataURL(file)
+    })    
