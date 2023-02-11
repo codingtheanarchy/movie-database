@@ -13,6 +13,9 @@ let usersActiveBtnIndex = 0;
 const genres = document.querySelector("select")
 const moviePoster = document.querySelector(".movie-poster")
 const movieShowcaseBtns = document.querySelector(".movie-showcase-btns")
+const addGenreForm = document.querySelector("#add-movie-popup")
+const addGenreBtn = document.querySelector("footer button")
+const exitGenreFormBtn = document.querySelector("#exit-form-btn")
 
 //adding click event listeners to each genre inside select.
 //if statement does not add event listener to a value property assign ""
@@ -64,12 +67,12 @@ for (let i = 0; i < genres.children.length; i++) {
     })
        
 
-  
+    addGenreBtn.addEventListener("click", function() {
+      console.log(addGenreForm)
+      addGenreForm.style.display = "flex"
+    })
+
+    exitGenreFormBtn.addEventListener("click", function(){
+      addGenreForm.style.display = "none"
+    })
       
-
-
-
-
-
-
-
