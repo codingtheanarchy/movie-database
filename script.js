@@ -13,12 +13,25 @@ let usersActiveBtnIndex = 0
 const genres = document.querySelector('select')
 const moviePoster = document.querySelector('.movie-poster')
 const movieShowcaseBtns = document.querySelector('.movie-showcase-btns')
-const addGenreForm = document.querySelector('#add-movie-popup')
-const addGenreBtn = document.querySelector('footer button')
-const exitGenreFormBtn = document.querySelector('#exit-form-btn')
 
-const fileInput = document.querySelector('input[type=file]')
-const previewUploadImg = document.querySelector('#drag-n-drop-box img')
+// Element objects associated with adding a new genre 
+const genreForm = {
+  popup: document.querySelector('#add-movie-popup'),
+  toggle: {
+    open: document.querySelector('footer button'),
+    close: document.querySelector('#exit-form-btn')
+  },
+  poster: {
+    inputElement: document.querySelector('input[type=file]'),
+    preview: document.querySelector('#drag-n-drop-box img'),
+    status: {
+      success: document.querySelector(".green-check"),
+      failure: document.querySelector(".red-cross"),
+      fileName: document.querySelector(".file-name"),
+      text: document.querySelector(".status.text")
+    }
+  }
+}
 
 //adding click event listeners to each genre inside select.
 //if statement does not add event listener to a value property assign ""
@@ -70,13 +83,13 @@ movieShowcaseBtns.addEventListener('click', function (event) {
   moviePoster.src = `./images/${usersActiveGenre}/${usersActiveMovies[usersActiveBtnIndex]}.webp`
 })
 
-addGenreBtn.addEventListener('click', function () {
-  console.log(addGenreForm)
-  addGenreForm.style.display = 'flex'
+genreForm.toggle.open.addEventListener('click', function () {
+  console.log(genreForm.popup)
+  genreForm.popup.style.display = 'flex'
 })
 
-exitGenreFormBtn.addEventListener('click', function () {
-  addGenreForm.style.display = 'none'
+genreForm.toggle.close.addEventListener('click', function () {
+  genreForm.popup.style.display = 'none'
 })
 
 // Active state for the FileReader
@@ -85,9 +98,9 @@ let divisor = undefined
 let divisorMultiplier = 0
 let progress = 0
 
-fileInput.addEventListener('change', function () {
+genreForm.poster.inputElement.addEventListener('change', function () {
   // Accessing a FileList for a File object
-  const file = fileInput.files[0]
+  const file = genreForm.poster.inputElement.files[0]
   const reader = new FileReader()
 
   reader.addEventListener('loadstart', function (event) {
@@ -97,6 +110,7 @@ fileInput.addEventListener('change', function () {
     divisor = Number(
       fileSize.toString().slice(0, fileSize.toString().length - 1)
     )
+    divisorMultiplier = divisor
     console.log('The FileReader has started the read operation')
     console.log('The divisor has been set to: ', divisor)
   })
@@ -114,7 +128,7 @@ fileInput.addEventListener('change', function () {
     console.log('The FileReader has completed')
     // Reset progress
     progress = 0
-    previewUploadImg.src = reader.result
+    genreForm.poster.preview.src = reader.result
   })
 
   reader.readAsDataURL(file)
