@@ -126,6 +126,9 @@ genreForm.poster.inputElement.addEventListener('change', function () {
 
   reader.addEventListener('load', function () {
     console.log('The FileReader has completed')
+    // set progress to 100% all the time
+    progress = 100%
+    console.log('Progress is 100%')
     // Reset progress
     progress = 0
     genreForm.poster.preview.src = reader.result
