@@ -169,13 +169,22 @@ div#drag-n-drop-box img {
 }
 
 #movie-poster-upload div#uploaded-movie-file {
-  display: flex;
+  /* display: flex; */
+  display: none;
   justify-content: space-evenly;
   margin-top: 10px;
   padding: 5px;
   border: 1px solid whitesmoke;
   color: whitesmoke;
   background: #5f27cd;
+}
+
+#file-status-icons i.green-check {
+  visibility: hidden;
+}
+
+#file-status-icons i.red-cross {
+  visibility: hidden;
 }
 
 #file-status-icons i.green-check::before {
@@ -199,6 +208,7 @@ div#drag-n-drop-box img {
 #file-name-box span {
   display: block;
 }
+
 
 #file-name-box span.file-name {
   font-weight: bold;
