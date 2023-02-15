@@ -144,6 +144,8 @@ button.hidden {
   height: 62px;
   width: 362px;
   background: #c8d6e5;
+  font-size: 1.5em;
+  padding: 5px;
 }
 
 #movie-poster-upload div#drag-n-drop-box {
