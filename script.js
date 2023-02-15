@@ -29,7 +29,8 @@ const genreForm = {
       success: document.querySelector(".green-check"),
       failure: document.querySelector(".red-cross"),
       fileName: document.querySelector(".file-name"),
-      text: document.querySelector(".status-text")
+      text: document.querySelector(".status-text"),
+      trash: document.querySelector(".trash")
     }
   }
 }
@@ -143,4 +144,10 @@ genreForm.poster.inputElement.addEventListener('change', function () {
   })
 
   reader.readAsDataURL(file)
+})
+
+
+genreForm.poster.status.trash.addEventListener("click", function(){
+ genreForm.poster.detailsBox.style.display = "none"  
+ genreForm.poster.preview.src = "./images/upload.png"
 })
