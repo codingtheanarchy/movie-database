@@ -28,7 +28,7 @@ const genreForm = {
       success: document.querySelector(".green-check"),
       failure: document.querySelector(".red-cross"),
       fileName: document.querySelector(".file-name"),
-      text: document.querySelector(".status.text")
+      text: document.querySelector(".status-text")
     }
   }
 }
