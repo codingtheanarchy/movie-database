@@ -24,6 +24,7 @@ const genreForm = {
   poster: {
     inputElement: document.querySelector('input[type=file]'),
     preview: document.querySelector('#drag-n-drop-box img'),
+    detailsBox: document.querySelector('#uploaded-movie-file'),
     status: {
       success: document.querySelector(".green-check"),
       failure: document.querySelector(".red-cross"),
@@ -104,6 +105,10 @@ genreForm.poster.inputElement.addEventListener('change', function () {
   const reader = new FileReader()
 
   reader.addEventListener('loadstart', function (event) {
+    // Display movie poster details box
+    genreForm.poster.detailsBox.style.display = "flex" 
+    // Display filename 
+    genreForm.poster.status.fileName.textContent = file.name
     // Initiate files total size in bytes
     fileSize = event.total
     // Initiate the divisor
@@ -129,6 +134,9 @@ genreForm.poster.inputElement.addEventListener('change', function () {
     // set progress to 100% all the time
     progress = 100%
     console.log('Progress is 100%')
+    // Display Green check mark and status: "complete"
+    genreForm.poster.status.success.style.visibility = "visible"
+    genreForm.poster.status.text.textContent = "complete"
     // Reset progress
     progress = 0
     genreForm.poster.preview.src = reader.result
