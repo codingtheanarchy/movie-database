@@ -1,3 +1,5 @@
+import {movie, genreForm} from './modules/selectors.js'
+
 const movies = {
   comedy: ['17-again', 'bruce-almighty', 'the-proposal'],
   drama: ['good-will-hunting', 'lean-on-me', 'the-blind-side'],
@@ -9,33 +11,6 @@ let usersActiveGenre = undefined
 let usersActiveMovies = undefined
 let usersActiveBtnIndex = 0
 
-//querySelectors made into objects assigning variables
-const movie = {
-  genres:document.querySelector('select'),
-  poster:document.querySelector('.movie-poster'),
-  buttons:document.querySelector('.movie-showcase-btns')
-}
-
-// Element objects associated with adding a new genre 
-const genreForm = {
-  popup: document.querySelector('#add-movie-popup'),
-  toggle: {
-    open: document.querySelector('footer button'),
-    close: document.querySelector('#exit-form-btn')
-  },
-  poster: {
-    inputElement: document.querySelector('input[type=file]'),
-    preview: document.querySelector('#drag-n-drop-box img'),
-    detailsBox: document.querySelector('#uploaded-movie-file'),
-    status: {
-      success: document.querySelector(".green-check"),
-      failure: document.querySelector(".red-cross"),
-      fileName: document.querySelector(".file-name"),
-      text: document.querySelector(".status-text"),
-      trash: document.querySelector(".trash")
-    }
-  }
-}
 
 //adding click event listeners to each genre inside select.
 //if statement does not add event listener to a value property assign ""
