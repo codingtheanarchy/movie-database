@@ -1,5 +1,7 @@
-const homeDropdown = document.querySelector('#select-genre')
-const popupDropdown = document.querySelector("#genre-box select")
+import {
+  movie as homeGenreDropdown,
+  genreForm as popupGenreDropdown,
+} from './selectors.js'
 
 const movies = {
   comedy: ['17-again', 'bruce-almighty', 'the-proposal'],
@@ -7,7 +9,7 @@ const movies = {
   thriller: ['lucky-number-slevin', 'memory', 'the-code'],
 }
 
-const genreList = Object.keys(movies); 
+const genreList = Object.keys(movies)
 console.log(genreList)
 
 export default function insertsGenres() {
@@ -20,10 +22,9 @@ export default function insertsGenres() {
     homeOptionElement.textContent = genreList[i]
     popupOptionElement.textContent = genreList[i]
     // Add genre class to home option element
-    homeOptionElement.className = "genre"
+    homeOptionElement.className = 'genre'
     // Populates the home and popup genre dropdown boxes
-    homeDropdown.add(homeOptionElement)
-    popupDropdown.add(popupOptionElement)
+    homeGenreDropdown.genres.add(homeOptionElement)
+    popupGenreDropdown.genres.add(popupOptionElement)
   }
 }
-
