@@ -123,6 +123,7 @@ button.hidden {
   font-weight: bold;
   cursor: pointer;
   background: #c8d6e5;
+  text-align: center
 }
 
 #popup-genre-box button {
