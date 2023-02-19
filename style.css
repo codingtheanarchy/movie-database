@@ -30,7 +30,7 @@ main {
   gap: 10px;
 }
 
-main div#movie-genre-box select {
+main div#home-genre-box select {
   padding: 20px;
   font-size: 15px;
   font-weight: bold;
@@ -111,12 +111,12 @@ button.hidden {
   color: #24415f;
 }
 
-#genre-box {
+#popup-genre-box {
   display: flex;
   gap: 5px;
 }
 
-#genre-box select {
+#popup-genre-box select {
   width: 300px;
   height: 62px;
   font-size: 15px;
@@ -125,7 +125,7 @@ button.hidden {
   background: #c8d6e5;
 }
 
-#genre-box button {
+#popup-genre-box button {
   width: 62px;
   height: 62px;
   background: #10ac84;
@@ -133,7 +133,7 @@ button.hidden {
   cursor: pointer;
 }
 
-#genre-box button::before {
+#popup-genre-box button::before {
   content: '\eadc';
   font-family: 'Nerd Fonts';
   font-size: 3em;
