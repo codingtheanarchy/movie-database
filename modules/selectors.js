@@ -1,6 +1,6 @@
 //querySelectors made into objects assigning variables
 export const movie = {
-  genres:document.querySelector('select'),
+  genres:document.querySelector('#home-genre-box select'),
   poster:document.querySelector('.movie-poster'),
   buttons:document.querySelector('.movie-showcase-btns')
 }
@@ -8,6 +8,7 @@ export const movie = {
 // Element objects associated with adding a new genre 
 export const genreForm = {
   popup: document.querySelector('#add-movie-popup'),
+  genres: document.querySelector('#popup-genre-box select'),
   toggle: {
     open: document.querySelector('footer button'),
     close: document.querySelector('#exit-form-btn')
