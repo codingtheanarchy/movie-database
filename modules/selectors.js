@@ -9,6 +9,9 @@ export const movie = {
 export const genreForm = {
   popup: document.querySelector('#add-movie-popup'),
   genres: document.querySelector('#popup-genre-box select'),
+  addGenreBtn: document.querySelector('#popup-genre-box button'),
+  newGenreInput: document.querySelector('#popup-genre-box input'),
+  newMovieInput: document.querySelector('#movie-title'),
   toggle: {
     open: document.querySelector('footer button'),
     close: document.querySelector('#exit-form-btn')
@@ -24,5 +27,6 @@ export const genreForm = {
       text: document.querySelector(".status-text"),
       trash: document.querySelector(".trash")
     }
-  }
+  },
+  submitMovieBtn: document.querySelector("#submission-box button")
 }
