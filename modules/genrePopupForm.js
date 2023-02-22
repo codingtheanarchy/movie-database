@@ -1,4 +1,5 @@
-import {genreForm} from "./selectors.js"
+import { genreForm } from './selectors.js'
+import { movies } from './insertGenres.js'
 
 export default function genrePopupForm() {
   genreForm.toggle.open.addEventListener('click', function () {
@@ -7,6 +8,13 @@ export default function genrePopupForm() {
   })
 
   genreForm.toggle.close.addEventListener('click', function () {
+    // Reset the form field values to empty strings
+    genreForm.newGenreInput.value = ''
+    genreForm.newMovieInput.value = ''
+    // Reset the display property values for applicable elements
+    genreForm.newGenreInput.style.display = 'none'
+    genreForm.genres.style.display = 'block'
+    genreForm.addGenreBtn.style.display = 'block'
     genreForm.popup.style.display = 'none'
   })
 
@@ -67,5 +75,51 @@ export default function genrePopupForm() {
   genreForm.poster.status.trash.addEventListener('click', function () {
     genreForm.poster.detailsBox.style.display = 'none'
     genreForm.poster.preview.src = './images/upload.png'
+  })
+
+  genreForm.addGenreBtn.addEventListener('click', function () {
+    // Remove the add genre button from the document flow
+    genreForm.addGenreBtn.style.display = 'none'
+    // Change the display model of the genre <select> dropdown to none
+    genreForm.genres.style.display = 'none'
+    // Change the display model of the genre <input> to block
+    genreForm.newGenreInput.style.display = 'block'
+    // focus the genre input element
+    genreForm.newGenreInput.focus()
+    // change cursor from pointer to text
+    genreForm.newGenreInput.style.cursor = 'text'
+    // Add placeholder text to inform the user to input a new genre
+    genreForm.newGenreInput.placeholder = 'Input new genre...'
+  })
+
+  // Sumits a new movie to the local database
+  genreForm.submitMovieBtn.addEventListener('click', function () {
+    const movieGenres = Object.keys(movies)
+    const genreSelected = movieGenres.includes(genreForm.genres.value)
+
+    // Runs only when users selects a genre from dropdown box
+    if (genreSelected && genreForm.newGenreInput.value === '') {
+      // Add new movie to database
+      movies[genreForm.genres.value].push(genreForm.newMovieInput.value)
+    } 
+    // Runs only when a user adds new genre
+    else if (genreForm.newGenreInput.value) {
+      // Ignore adding new genre, and just push movie 
+      if(movieGenres.includes(genreForm.newGenreInput.value)) {
+        movies[genreForm.newGenreInput.value].push(genreForm.newMovieInput.value)
+      } 
+      // Add new genre to movies object, along with the associated movie
+      else {
+        movies[genreForm.newGenreInput.value] = [genreForm.newMovieInput.value]
+      }
+    } else {
+      console.log(' Please select or input a genre before proceeding')
+    }
+
+    console.log(movies)
+    // Reset form
+    genreForm.genres.value = ""
+    genreForm.newGenreInput.value = ""
+    genreForm.newMovieInput.value = ""
   })
 }
