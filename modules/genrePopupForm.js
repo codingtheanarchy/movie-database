@@ -30,11 +30,6 @@ export default function genrePopupForm() {
   let progress = 0
 
   genreForm.poster.inputElement.addEventListener('change', function () {
-    // Remove preset object
-    fileListStatus.pop()
-    // Update file object, which is located at top level of this module
-    fileListStatus.push(...genreForm.poster.inputElement.files)
-
     // Accessing a FileList for a File object
     const file = genreForm.poster.inputElement.files[0]
     const reader = new FileReader()
@@ -110,18 +105,23 @@ export default function genrePopupForm() {
     // Runs only when users select a genre from dropdown box
     if (
       genreSelected &&
-      genreForm.newGenreInput.value === '' &&
-      genreForm.newMovieInput.value
+      genreForm.newMovieInput.value &&
+      genreForm.newGenreInput.value === ''
     ) {
       // Verify that user selected a poster
-      if (fileListStatus[0].name !== genreForm.poster.inputElement.files.name) {
+      if (
+        fileListStatus[0].name !== checkFileExistence() 
+      ) {
+        console.log('Added to movie database')
         // Add new movie to database
         movies[genreForm.genres.value].push(genreForm.newMovieInput.value)
 
         // Resets the genre form
         resetForm()
-        // Resets fileList 
-        fileListStatus = [{ name: undefined }]
+        // Remove previously set or spreaded file object
+        fileListStatus.pop()
+        // Spread the updated FileList into FileListStatus array
+        fileListStatus.push(...genreForm.poster.inputElement.files)
       } else {
         console.log('Upload a movie poster')
       }
@@ -143,7 +143,7 @@ export default function genrePopupForm() {
         }
         // Resets the genre form
         resetForm()
-        // Resets fileList 
+        // Resets fileList
         fileListStatus = [{ name: undefined }]
       } else {
         console.log('Upload a movie poster')
@@ -155,6 +155,31 @@ export default function genrePopupForm() {
     }
   })
 }
+
+function checkFileExistence() {
+  try {
+    const fileName = genreForm.poster.inputElement.files[0].name
+    console.log("This try block runs")
+    return fileName
+  } catch(err) {
+    console.error("The filename was undefined because the File object does not exist") 
+    console.log("This catch block runs")
+    return undefined
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function resetForm() {
   // Reset form
@@ -171,3 +196,5 @@ function resetForm() {
   genreForm.poster.preview.src = '../images/upload.png'
   genreForm.poster.detailsBox.style.display = 'none'
 }
+
+
