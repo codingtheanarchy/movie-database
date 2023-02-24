@@ -1,5 +1,6 @@
 import { genreForm } from './selectors.js'
 import { movies } from './insertGenres.js'
+let fileListStatus = [{ name: undefined }]
 
 export default function genrePopupForm() {
   genreForm.toggle.open.addEventListener('click', function () {
@@ -9,6 +10,7 @@ export default function genrePopupForm() {
 
   genreForm.toggle.close.addEventListener('click', function () {
     // Reset the form field values to empty strings
+    genreForm.genres.value = ''
     genreForm.newGenreInput.value = ''
     genreForm.newMovieInput.value = ''
     // Reset the display property values for applicable elements
@@ -16,6 +18,9 @@ export default function genrePopupForm() {
     genreForm.genres.style.display = 'block'
     genreForm.addGenreBtn.style.display = 'block'
     genreForm.popup.style.display = 'none'
+    // Reset poster preview
+    genreForm.poster.preview.src = '../images/upload.png'
+    genreForm.poster.detailsBox.style.display = 'none'
   })
 
   // Active state for the FileReader
@@ -25,6 +30,11 @@ export default function genrePopupForm() {
   let progress = 0
 
   genreForm.poster.inputElement.addEventListener('change', function () {
+    // Remove preset object
+    fileListStatus.pop()
+    // Update file object, which is located at top level of this module
+    fileListStatus.push(...genreForm.poster.inputElement.files)
+
     // Accessing a FileList for a File object
     const file = genreForm.poster.inputElement.files[0]
     const reader = new FileReader()
@@ -97,29 +107,67 @@ export default function genrePopupForm() {
     const movieGenres = Object.keys(movies)
     const genreSelected = movieGenres.includes(genreForm.genres.value)
 
-    // Runs only when users selects a genre from dropdown box
-    if (genreSelected && genreForm.newGenreInput.value === '') {
-      // Add new movie to database
-      movies[genreForm.genres.value].push(genreForm.newMovieInput.value)
-    } 
+    // Runs only when users select a genre from dropdown box
+    if (
+      genreSelected &&
+      genreForm.newGenreInput.value === '' &&
+      genreForm.newMovieInput.value
+    ) {
+      // Verify that user selected a poster
+      if (fileListStatus[0].name !== genreForm.poster.inputElement.files.name) {
+        // Add new movie to database
+        movies[genreForm.genres.value].push(genreForm.newMovieInput.value)
+
+        // Resets the genre form
+        resetForm()
+        // Resets fileList 
+        fileListStatus = [{ name: undefined }]
+      } else {
+        console.log('Upload a movie poster')
+      }
+    }
     // Runs only when a user adds new genre
-    else if (genreForm.newGenreInput.value) {
-      // Ignore adding new genre, and just push movie 
-      if(movieGenres.includes(genreForm.newGenreInput.value)) {
-        movies[genreForm.newGenreInput.value].push(genreForm.newMovieInput.value)
-      } 
-      // Add new genre to movies object, along with the associated movie
-      else {
-        movies[genreForm.newGenreInput.value] = [genreForm.newMovieInput.value]
+    else if (genreForm.newGenreInput.value && genreForm.newMovieInput.value) {
+      if (fileListStatus[0].name !== genreForm.poster.inputElement.files.name) {
+        // Ignore adding new genre, and just push movie
+        if (movieGenres.includes(genreForm.newGenreInput.value)) {
+          movies[genreForm.newGenreInput.value].push(
+            genreForm.newMovieInput.value
+          )
+        }
+        // Add new genre to movies object, along with the associated movie
+        else {
+          movies[genreForm.newGenreInput.value] = [
+            genreForm.newMovieInput.value,
+          ]
+        }
+        // Resets the genre form
+        resetForm()
+        // Resets fileList 
+        fileListStatus = [{ name: undefined }]
+      } else {
+        console.log('Upload a movie poster')
       }
     } else {
-      console.log(' Please select or input a genre before proceeding')
+      console.log(
+        ' Please select or input a genre, and movie title before submission'
+      )
     }
-
-    console.log(movies)
-    // Reset form
-    genreForm.genres.value = ""
-    genreForm.newGenreInput.value = ""
-    genreForm.newMovieInput.value = ""
   })
+}
+
+function resetForm() {
+  // Reset form
+  genreForm.genres.value = ''
+  genreForm.newGenreInput.value = ''
+  genreForm.newMovieInput.value = ''
+
+  // Reset the display property values for applicable elements
+  genreForm.newGenreInput.style.display = 'none'
+  genreForm.genres.style.display = 'block'
+  genreForm.addGenreBtn.style.display = 'block'
+
+  // Reset poster preview
+  genreForm.poster.preview.src = '../images/upload.png'
+  genreForm.poster.detailsBox.style.display = 'none'
 }
