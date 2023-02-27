@@ -1,6 +1,7 @@
 import { genreForm } from './selectors.js'
 import { movies } from './insertGenres.js'
-let previousPoster = [{ name: undefined }]
+const previousPoster = [{ name: undefined }]
+let fileReaderInfo = undefined
 
 export default function genrePopupForm() {
   genreForm.toggle.open.addEventListener('click', function () {
@@ -33,6 +34,9 @@ export default function genrePopupForm() {
     // Accessing a FileList for a File object
     const file = genreForm.poster.inputElement.files[0]
     const reader = new FileReader()
+
+    // copy instance to global scope
+    fileReaderInfo = reader
 
     reader.addEventListener('loadstart', function (event) {
       // Display movie poster details box
@@ -101,6 +105,10 @@ export default function genrePopupForm() {
   genreForm.submitMovieBtn.addEventListener('click', function () {
     const movieGenres = Object.keys(movies)
     const genreSelected = movieGenres.includes(genreForm.genres.value)
+    const usersMovie = {
+      movieTitle: genreForm.newMovieInput.value,
+      poster: fileReaderInfo.result,
+    }
 
     // Runs only when user selects a genre from dropdown box
     if (
@@ -110,10 +118,9 @@ export default function genrePopupForm() {
     ) {
       // Verify that user selected a poster
       if (previousPoster[0].name !== checkCurrentPoster()) {
-        console.log('Added to movie database')
         // Add new movie to database
-        movies[genreForm.genres.value].push(genreForm.newMovieInput.value)
-
+        movies[genreForm.genres.value].push(usersMovie)
+        console.log(movies)
         // Resets the genre form
         resetForm()
         // Remove previously set or spreaded file object
@@ -129,24 +136,20 @@ export default function genrePopupForm() {
       if (previousPoster[0].name !== checkCurrentPoster()) {
         // Ignore adding new genre, and just push movie
         if (movieGenres.includes(genreForm.newGenreInput.value)) {
-          movies[genreForm.newGenreInput.value].push(
-            genreForm.newMovieInput.value
-          )
+          movies[genreForm.newGenreInput.value].push(usersMovie)
         }
         // Add new genre to movies object, along with the associated movie
         else {
-          movies[genreForm.newGenreInput.value] = [
-            genreForm.newMovieInput.value,
-          ]
+          movies[genreForm.newGenreInput.value] = [usersMovie]
         }
 
+        console.log(movies)
         // Resets the genre form
         resetForm()
         // Remove previously set or spreaded file object
         previousPoster.pop()
         // Spread the updated FileList into FileListStatus array
         previousPoster.push(...genreForm.poster.inputElement.files)
-        console.log("previousPoster updated to: ", previousPoster) 
       } else {
         console.log('Upload a movie poster')
       }
@@ -171,7 +174,6 @@ function checkCurrentPoster() {
     return undefined
   }
 }
-
 
 function resetForm() {
   // Reset form
