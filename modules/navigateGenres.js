@@ -8,6 +8,7 @@ let usersActiveBtnIndex = 0
 
 export default function navigateGenres() {
 
+  // Add event listeners to all option elements
   for (let i = 0; i < movie.genres.children.length; i++) {
     // check if option element has a value
     if (movie.genres.children[i].value) {
@@ -25,7 +26,12 @@ export default function navigateGenres() {
         usersActiveMovies = movies[usersActiveGenre]
 
         //injectiong the first movie poster (0 injects 1st movie of array)
-        movie.poster.src = `./images/${usersActiveGenre}/${movies[usersActiveGenre][0]}.webp`
+        if(typeof movies[usersActiveGenre][0] === "string") {
+          movie.poster.src = `./images/${usersActiveGenre}/${movies[usersActiveGenre][0]}.webp`
+        } 
+        else {
+          movie.poster.src = movies[usersActiveGenre][0].poster
+        }
 
         // reset all buttons to hidden
         for (let i = 0; i < movie.buttons.children.length; i++) {
@@ -53,7 +59,13 @@ export default function navigateGenres() {
     event.target.classList.add('highlight')
 
     //this is the file path to the movie poster image
-    movie.poster.src = `./images/${usersActiveGenre}/${usersActiveMovies[usersActiveBtnIndex]}.webp`
+    if (typeof usersActiveMovies[usersActiveBtnIndex] === "string") {
+      movie.poster.src = `./images/${usersActiveGenre}/${usersActiveMovies[usersActiveBtnIndex]}.webp`
+    }
+    // Supports user submitted movies
+    else {
+      movie.poster.src = usersActiveMovies[usersActiveBtnIndex].poster
+    }
   })
 }
 
