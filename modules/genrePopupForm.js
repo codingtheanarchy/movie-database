@@ -1,5 +1,7 @@
 import { genreForm } from './selectors.js'
-import { movies } from './insertGenres.js'
+import { movies, insertsGenres } from './insertGenres.js'
+import navigateGenres from './navigateGenres.js'
+
 const previousPoster = [{ name: undefined }]
 let fileReaderInfo = undefined
 
@@ -144,6 +146,10 @@ export default function genrePopupForm() {
         }
 
         console.log(movies)
+        // Adds new genre to the home and popupForm drop down menus
+        insertsGenres(genreForm.newGenreInput.value)
+        // Adds event listener to the new genre <option> and setups movie navigation
+        navigateGenres()
         // Resets the genre form
         resetForm()
         // Remove previously set or spreaded file object
